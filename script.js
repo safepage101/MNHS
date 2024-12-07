@@ -18,21 +18,22 @@ const prevSlide = () => {
     }
 };
 
-// Initialize slider
 showSlide(slideIndex);
 
-// Handle form submission
 document.getElementById("anonymousForm").addEventListener("submit", function (e) {
     e.preventDefault();
+
+    const submitButton = document.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
 
     const message = document.getElementById("message").value;
 
     if (!message.trim()) {
         alert("Please write your concern before submitting.");
+        submitButton.disabled = false;
         return;
     }
 
-    // Send message to the Google Apps Script endpoint
     fetch("https://script.google.com/macros/s/AKfycbxpFuDm17KAld9b5TiJkMAaph_QKX7bObQvia3mqQ5r1LQRLH1gbR2SK0ck074M3NgmDA/exec", {
         method: "POST",
         body: new URLSearchParams({ message: message })
@@ -41,7 +42,7 @@ document.getElementById("anonymousForm").addEventListener("submit", function (e)
         .then(data => {
             if (data.status === "success") {
                 alert("Your message was sent successfully.");
-                document.getElementById("message").value = ""; // Clear the textarea
+                document.getElementById("message").value = "";
             } else {
                 alert("Something went wrong. Please try again.");
             }
@@ -49,5 +50,8 @@ document.getElementById("anonymousForm").addEventListener("submit", function (e)
         .catch(error => {
             console.error("Error:", error);
             alert("Could not send message. Please try again later.");
+        })
+        .finally(() => {
+            submitButton.disabled = false;
         });
 });
