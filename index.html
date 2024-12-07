@@ -3,19 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous Message</title>
+    <title>AnonymousMessag3</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
 </head>
-<body>
-    <div class="container">
-        <h1>Submit Your Concerns Anonymously</h1>
-        <p>Feel free to mention any names</p>
-        <form id="anonymousForm">
-            <textarea id="message" placeholder="Write your concern here..." required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-        <footer>Powered by <a href="https://github.com" target="_blank">Free Tools</a></footer>
-     </div>   
-     <script src="script.js"></script>
-  </body>
+<body class="thankyoupagebody">
+        
+    
+    
+<!-- Slider Container -->
+    <div class="slider">
+        <div class="navigation">
+        <button class="prev-button" onclick="prevSlide()">HOME</button>
+        <button class="next-button" onclick="nextSlide()">About this website</button>
+        </div>
+        <div class="slides">          
+           <!-- slide 1 -->
+           <div class="p1wrapper">
+               <p class="p1">Undergoing development 🤖🛠️</p>
+           </div>           
+           <div class="slide">           
+               <div class="container">
+                    <h1>Confess Anonymously</h1>
+                    <p>Feel free to mention any names!</p>
+                    <form id="anonymousForm">
+                        <textarea id="message" placeholder="Write your concern here..." required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                    <footer>Powered by: <a href="https://github.com" target="_blank">Github</a></footer>
+               </div>
+           </div>
+           <!-- slide2 -->
+           <div class="slide">
+               <div class="aboutContainer">
+                    <p class="aboutContent">
+
+<h1>Welcome to Anonymous Reporting Platform of MNHS.</h1> <br> This website was created to give students a safe and secure way to share their concerns, experiences, or issues without fear of judgment or retaliation. Whether it’s reporting harassment, bullying, or any other sensitive matter, this platform allows your voice to be heard.
+<br>
+<br>
+Using this platform is easy:<br>
+1. Write your concern in the text box provided.<br>
+2. Submit your message — no personal information is required.<br>
+3. The message is sent anonymously to the appropriate team for review and action.<br><br>
+
+We take your privacy seriously. This platform does not collect any identifying information, such as your name, email, or IP address. Messages are stored securely and are only accessed by authorized personnel to ensure appropriate action is taken.<br><br>
+This platform is managed by [Jie Marian(SSLG))] to ensure that all concerns are addressed promptly and responsibly.<br><br>
+Your voice matters. By using this platform, you contribute to creating a safer and more respectful environment for everyone. We encourage you to use it responsibly and respectfully.<br><br>
+For non-anonymous concerns or immediate assistance, please contact us at [email address] or visit [office location].                    </p>
+                </div>
+           </div>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
 </html>
