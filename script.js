@@ -21,6 +21,7 @@ const prevSlide = () => {
 // Initialize slider
 showSlide(slideIndex);
 
+// Handle form submission
 document.getElementById("anonymousForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -31,22 +32,22 @@ document.getElementById("anonymousForm").addEventListener("submit", function (e)
         return;
     }
 
-    fetch("https://script.google.com/macros/s/AKfycbxTwz5nR34mmlgfqo1DSZmBtSe_K56roXClnAStFAzfVHLtl0ZkvuCDJiGi3dw3SXO2/exec", {
+    // Send message to the Google Apps Script endpoint
+    fetch("https://script.google.com/macros/s/AKfycbxpFuDm17KAld9b5TiJkMAaph_QKX7bObQvia3mqQ5r1LQRLH1gbR2SK0ck074M3NgmDA/exec", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message })
+        body: new URLSearchParams({ message: message })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === "success") {
-            alert("Your message has been submitted successfully.");
-            document.getElementById("message").value = "";
-        } else {
-            alert("An error occurred. Please try again later.");
-        }
-    })
-    .catch(error => {
-        console.error("Error submitting the message:", error);
-        alert("Unable to connect to server. Please try again later.");
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                alert("Your message was sent successfully.");
+                document.getElementById("message").value = ""; // Clear the textarea
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Could not send message. Please try again later.");
+        });
 });
