@@ -22,25 +22,31 @@ const prevSlide = () => {
 showSlide(slideIndex);
 
 document.getElementById("anonymousForm").addEventListener("submit", function (e) {
-            e.preventDefault();
+    e.preventDefault();
 
-            const message = document.getElementById("message").value;
+    const message = document.getElementById("message").value;
 
-            if (!message.trim()) {
-                alert("Please write your concern.");
-                return;
-            }
+    if (!message.trim()) {
+        alert("Please write your concern before submitting.");
+        return;
+    }
 
-            fetch("https://script.google.com/macros/s/AKfycbyBhUDYkJ5X6XYKTPsO1MAeaTqtG6ZJYp7OcmRjaPA0HjEaiy-Fr9VCIdRxRYNyF8NX/exec", {
-                method: "POST",                
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message })
-            })
-            .then(() => {
-                alert("Your message has been submitted. Thank you!");
-                document.getElementById("message").value = "";
-            })
-            .catch(() => {
-                alert("There was an error submitting your message. Please try again later.");
-            });
-        });
+    fetch("https://script.google.com/macros/s/AKfycbxTwz5nR34mmlgfqo1DSZmBtSe_K56roXClnAStFAzfVHLtl0ZkvuCDJiGi3dw3SXO2/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert("Your message has been submitted successfully.");
+            document.getElementById("message").value = "";
+        } else {
+            alert("An error occurred. Please try again later.");
+        }
+    })
+    .catch(error => {
+        console.error("Error submitting the message:", error);
+        alert("Unable to connect to server. Please try again later.");
+    });
+});
