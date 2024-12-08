@@ -24,12 +24,22 @@ document.getElementById("anonymousForm").addEventListener("submit", function (e)
     e.preventDefault();
 
     const submitButton = document.querySelector('button[type="submit"]');
+    const loader = document.getElementById('loader');
+    const submitText = document.getElementById('buttonText');
+
+    // Show loader and hide text visually by setting opacity
+    loader.style.display = 'inline-block';
+    submitText.style.opacity = '0';
+    submitText.style.pointerEvents = 'none';
     submitButton.disabled = true;
 
     const message = document.getElementById("message").value;
 
     if (!message.trim()) {
         alert("Please write your concern before submitting.");
+        loader.style.display = 'none';
+        submitText.style.opacity = '1';
+        submitText.style.pointerEvents = 'auto';
         submitButton.disabled = false;
         return;
     }
@@ -46,12 +56,18 @@ document.getElementById("anonymousForm").addEventListener("submit", function (e)
             } else {
                 alert("Something went wrong. Please try again.");
             }
+
+            loader.style.display = 'none';
+            submitText.style.opacity = '1';
+            submitText.style.pointerEvents = 'auto';
+            submitButton.disabled = false;
         })
         .catch(error => {
             console.error("Error:", error);
             alert("Could not send message. Please try again later.");
-        })
-        .finally(() => {
+            loader.style.display = 'none';
+            submitText.style.opacity = '1';
+            submitText.style.pointerEvents = 'auto';
             submitButton.disabled = false;
         });
 });
