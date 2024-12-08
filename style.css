@@ -127,11 +127,43 @@ button {
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s ease;
+    position: relative;
 }
 
 button:hover {
     background: #2575fc;
 }
+
+.loader {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-left-color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 20%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+#buttonText {
+  visibility: visible;
+  transition: visibility 0.2s ease;
+}
+
+.hidden {
+  visibility: hidden; /* Hide the button text */
+}
+
+
 
 footer {
     margin-top: 15px;
